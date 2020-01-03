@@ -23,6 +23,7 @@ typedef enum {
 // rename
 typedef struct {
     int board[N * N];
+    int pick;
     int done_indexes[5];
     int state;
 } game_t;

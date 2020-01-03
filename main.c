@@ -40,6 +40,7 @@ int main(int argc, char *argv[])
     game_t game = {
         .board = { A, A,
                    B, B },
+        .pick = 0,
         .done_indexes = {0, 1},
         .state = IDLE
     };
@@ -69,6 +70,7 @@ int main(int argc, char *argv[])
     }
 
     SDL_DestroyWindow(window);
+    SDL_DestroyRenderer(renderer);
     SDL_Quit();
 
     return EXIT_SUCCESS;

@@ -19,18 +19,44 @@ void render_grid(SDL_Renderer *renderer)
     }
 }
 
-void render_board(SDL_Renderer *renderer,
-                  const int *board,
-                  const SDL_Color *player_x_color,
-                  const SDL_Color *player_o_color)
+void render_cell_content(SDL_Renderer *renderer,
+                         const int row,
+                         const int column,
+                         const int *board)
 {
-    
+    switch (board[row * N + column]) {
+    case A:
+        SDL_SetRenderDrawColor( renderer, 255, 0, 0, 255 );
+        break;
+    case B:
+        SDL_SetRenderDrawColor( renderer, 0, 0, 255, 255 );
+        break;
+    default : {}
+    }
+
+    SDL_Rect r;
+    r.x = column * CELL_WIDTH;
+    r.y = row * CELL_HEIGHT;
+    r.w = 50;
+    r.h = 50;
+
+    SDL_RenderFillRect( renderer, &r );
+}
+
+void render_board(SDL_Renderer *renderer,
+                  const int *board)
+{
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            render_cell_content(renderer, i, j, board);
+        }
+    }
 }
 
 void render_idle_state(SDL_Renderer *renderer, const game_t *game)
 {
     render_grid(renderer);
-    
+    render_board(renderer, game->board);
 }
 
 void render_game_over_state(SDL_Renderer *renderer,
