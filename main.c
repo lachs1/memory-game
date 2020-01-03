@@ -38,10 +38,15 @@ int main(int argc, char *argv[])
     }
 
     game_t game = {
-        .board = { A, A,
-                   B, B },
-        .pick = 0,
-        .done_indexes = {0, 1},
+        .corr_board = { B, A, C, D,
+                        A, D, C, B,
+                        E, F, G, G,
+                        F, H, H, E },
+        .done_board = { CLOSED, CLOSED, CLOSED, CLOSED,
+                        CLOSED, CLOSED, CLOSED, CLOSED,
+                        CLOSED, CLOSED, CLOSED, CLOSED,
+                        CLOSED, CLOSED, CLOSED, CLOSED },
+        .pick = 9999,
         .state = IDLE
     };
 
